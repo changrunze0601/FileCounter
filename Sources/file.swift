@@ -84,10 +84,6 @@ struct FileItem {
     var itemType: ItemType = .other
 }
 
-func currentPath() -> String {
-    FileManager.default.currentDirectoryPath
-}
-
 
 /// 列出当前目录下的所有文件和目录
 /// - Parameter path: 目录地址
@@ -99,7 +95,6 @@ func list(path: String) throws -> [FileItem] {
         if p.isDirectory() {
             continue
         }
-        
         let url = URL(string: path)?.appendingPathComponent(p)
         let absolutePath = url?.path ?? "\(path)\\\(p)"
         var item = FileItem(name: p.name(), absolutePath: absolutePath)
@@ -112,7 +107,7 @@ func list(path: String) throws -> [FileItem] {
             item.itemType = .swift
         case "c", "cpp", "cc":
             item.itemType = .c
-        case ".dart":
+        case "dart":
             item.itemType = .dart
         default:
             continue

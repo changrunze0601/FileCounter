@@ -18,7 +18,7 @@ struct FileCounter: ParsableCommand {
     var file: String?
 
     func run() throws {
-        let root = currentPath().appending("/" + workspace)
+        let root = workspace
         print(root)
         var total = 0
         var oc = CodeLanguage(itemType: .oc)
